@@ -27,7 +27,7 @@ def grid2d(start, end, num=50):
 	return np.column_stack([X0.flatten(), X1.flatten()])
 ###############################################################################
 # load the data
-data = np.loadtxt("dataQuadReg2D_noisy.txt")
+data = np.loadtxt("dataQuadReg2D.txt")
 #print "data.shape:", data.shape
 #np.savetxt("tmp.txt", data) # save data if you want to
 myLamda = [0.0001,0.0005, 0.001,0.005, 0.01, 0.05, 0.1, 0.5, 1.0, 5.0, 10.0, 25.0, 50.0, 75.0, 100.0, 250.0, 500.0, 750.0, 1000.0, 5000.0, 10000.0, 100000.0, 1000000.0]
@@ -68,6 +68,12 @@ for lamda in myLamda:
 		#compute squared Error when testing with i_th subdata
 		squaredError = np.linalg.norm(y_test - mdot(X_test, beta_)) * np.linalg.norm(y_test - mdot(X_test, beta_))
 		sumError += squaredError;
+	# fig = plt.figure()
+	# ax = fig.add_subplot(111, projection='3d') # the projection part is important
+	# ax.scatter(X_test[:, 1], X_test[:, 2], y_test) # don't use the 1 infront
+	# ax.scatter(X[:, 1], X[:, 2], y, color="red") # also show the real data
+	# ax.set_title("predicted data")
+	# plt.show()
 
 	#Step 3:report mean error
 	meanSquaredError = sumError/k;
@@ -79,7 +85,6 @@ for lamda in myLamda:
 
 print "minMeanSquaredError:", minMeanSquaredError
 print "bestLamda:", bestLamda
-
 
 
 
