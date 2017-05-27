@@ -44,10 +44,11 @@ plt.draw() # show, use plt.show() for blocking
 X = prepend_one(X)
 print "X.shape:", X.shape
 # Fit model/compute optimal parameters beta
-lamda = 1000;
+lamda = 0.1;
 identityMatrix = np.identity(3)
 identityMatrix[0,0] = 0
 #print "identity:", lamda*identityMatrix
+print(X.shape)
 beta_ = mdot(inv(dot(X.T, X) + lamda*identityMatrix), X.T, y)
 print "Optimal beta:", beta_
 # prep for prediction

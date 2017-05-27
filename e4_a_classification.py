@@ -22,7 +22,7 @@ def plotData(data):
             x1.append(point[0])
             x2.append(point[1])
     plt.plot(x1,x2,'go')
-    plt.show()
+
 def plotClassProbability(data,p):
     X = data[:, :2]
     x1 = []
@@ -108,7 +108,6 @@ beta = np.zeros((X.shape[1],1)) #size k x 1
 stepSize = 10
 beta = newtonMedthod(X,y,beta,lamda,stepSize)
 print "Optimim beta\n", beta
-
+plotData(data)
 p = sigmoid(X,beta)
 plotClassProbability(data,p)
-

@@ -68,17 +68,18 @@ for lamda in myLamda:
 		#compute squared Error when testing with i_th subdata
 		squaredError = np.linalg.norm(y_test - mdot(X_test, beta_)) * np.linalg.norm(y_test - mdot(X_test, beta_))
 		sumError += squaredError;
-	# fig = plt.figure()
-	# ax = fig.add_subplot(111, projection='3d') # the projection part is important
-	# ax.scatter(X_test[:, 1], X_test[:, 2], y_test) # don't use the 1 infront
-	# ax.scatter(X[:, 1], X[:, 2], y, color="red") # also show the real data
-	# ax.set_title("predicted data")
-	# plt.show()
+
 
 	#Step 3:report mean error
 	meanSquaredError = sumError/k;
 	print "meanSquaredError", meanSquaredError
 	print " "
+	fig = plt.figure()
+	ax = fig.add_subplot(111, projection='3d') # the projection part is important
+	ax.scatter(X_test[:, 1], X_test[:, 2], y_test) # don't use the 1 infront
+	ax.scatter(X[:, 1], X[:, 2], y, color="red") # also show the real data
+	ax.set_title("predicted data")
+	plt.show()
 	if meanSquaredError < minMeanSquaredError:
 		minMeanSquaredError = meanSquaredError
 		bestLamda = lamda
